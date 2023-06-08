@@ -1,0 +1,20 @@
+<p-table id="winnersTable" [value]="winners ?? []">
+  <ng-template pTemplate="caption">
+    <input type="number" pInputText [(ngModel)]="yearFilter" />&nbsp;
+    <p-button><i style="font-size: 0.7rem;" class="pi pi-search"></i></p-button>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th class="center-align">ID</th>
+      <th class="center-align">Year</th>
+      <th class="center-align">Title</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-winner>
+    <tr>
+      <td>{{ winner.id }}</td>
+      <td>{{ winner.year }}</td>
+      <td>{{ winner.title }}</td>
+    </tr>
+  </ng-template>
+</p-table>

@@ -2,10 +2,14 @@
   <span>MOVIES AWARDS - Golden Raspberry Awards</span>
 </div>
 <div class="grid grid-nogutter">
-  <div class="col-12 md:col-5 lg:col-3">
-    <app-menu></app-menu>
+  <div class="col-12 md:col-3 lg:col-2 xl:col-2">
+    <div class="menu">
+      <p-button id="buttonDashboard" class="menu-item" [routerLink]="['/dashboard']">Dashboard</p-button>
+      <br>
+      <p-button id="buttonList" class="menu-item"  [routerLink]="['/list']">List</p-button>
+    </div>
   </div>
-  <div class="col-12 md:col-7 lg:col-9">
+  <div class="col-12 md:col-9 lg:col-10 body-home">
     <router-outlet></router-outlet>
   </div>
 </div>

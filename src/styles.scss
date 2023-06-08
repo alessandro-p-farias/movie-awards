@@ -1,4 +1,32 @@
+@import "primeicons/primeicons.css";
+@import "variables.scss";
+
+* {
+    font-family: var(--font-family);
+}
+
 body {
     margin: 0;
-    font-family: var(--font-family);
+}
+
+.view-title {
+    background-color: $backgroundColor;
+    border-radius: .3rem;
+}
+
+.center-align {
+    text-align: center;
+}
+
+.p-inputtext {
+    padding: 0.2rem;
+}
+
+.p-button {
+    padding: 0.5rem 0.6rem;
+}
+
+.top-align {
+    display: flex;
+    align-items: start;
 }

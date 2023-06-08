@@ -1,0 +1,28 @@
+<p-table id="moviesTable" [value]="movies" [tableStyle]="{ 'min-width': '50rem' }">
+  <ng-template pTemplate="header">
+    <tr>
+      <th style="width: 15%;" class="center-align">ID</th>
+      <th style="width: 30%;" class="center-align">Year</th>
+      <th style="width: 40%;" class="center-align">Title</th>
+      <th style="width: 15%;" class="center-align">Winner</th>
+    </tr>
+    <tr>
+      <th style="width: 15%;" class="center-align"></th>
+      <th style="width: 30%;" class="center-align">
+        <input type="text" pInputText [(ngModel)]="yearFilter" />
+      </th>
+      <th style="width: 40%;" class="center-align"></th>
+      <th style="width: 15%;" class="center-align">
+        <p-dropdown [options]="winnerOptions" appendTo="body" [(ngModel)]="winnerFilter"></p-dropdown>
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-movie>
+    <tr>
+      <td>{{ movie.id }}</td>
+      <td>{{ movie.year }}</td>
+      <td>{{ movie.title }}</td>
+      <td>{{ movie.winner }}</td>
+    </tr>
+  </ng-template>
+</p-table>

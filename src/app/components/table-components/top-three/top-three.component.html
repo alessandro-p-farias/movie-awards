@@ -1,0 +1,14 @@
+<p-table id="topThreeTable" [value]="topThree.studios ?? []">
+  <ng-template pTemplate="header">
+    <tr>
+      <th class="center-align">Name</th>
+      <th class="center-align">Win Count</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-studio>
+    <tr>
+      <td>{{ studio.name }}</td>
+      <td>{{ studio.winCount }}</td>
+    </tr>
+  </ng-template>
+</p-table>
