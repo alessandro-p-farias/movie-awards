@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { ButtonModule } from 'primeng/button';
+
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 
 import { DashboardModule } from '../dashboard/dashboard.module';
-import { MenuModule } from '../menu/menu.module';
 import { ListModule } from '../list/list.module';
 
 @NgModule({
@@ -16,9 +17,10 @@ import { ListModule } from '../list/list.module';
     BrowserModule,
     HomeRoutingModule,
 
-    MenuModule,
     DashboardModule,
     ListModule,
+
+    ButtonModule
   ],
   providers: [],
 })

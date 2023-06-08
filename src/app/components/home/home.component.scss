@@ -16,3 +16,21 @@
 .body-home {
     padding: 1rem;
 }
+
+.menu {
+    padding: 1rem;
+    background-color: $backgroundColor;
+    position: sticky;
+    top: 60px;
+    height: calc(100vh - 60px);
+}
+
+::ng-deep .menu-item button {
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 1rem;
+    width: 9rem;
+    &:focus {
+        background-color: $primaryColorFocus
+    }
+}
