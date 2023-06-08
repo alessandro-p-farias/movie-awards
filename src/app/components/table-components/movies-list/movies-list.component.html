@@ -1,4 +1,4 @@
-<p-table [value]="movies" [tableStyle]="{ 'min-width': '50rem' }">
+<p-table id="moviesTable" [value]="movies" [tableStyle]="{ 'min-width': '50rem' }">
   <ng-template pTemplate="header">
     <tr>
       <th style="width: 15%;" class="center-align">ID</th>
@@ -13,7 +13,7 @@
       </th>
       <th style="width: 40%;" class="center-align"></th>
       <th style="width: 15%;" class="center-align">
-        <input type="text" pInputText [(ngModel)]="winnerFilter" />
+        <p-dropdown [options]="winnerOptions" appendTo="body" [(ngModel)]="winnerFilter"></p-dropdown>
       </th>
     </tr>
   </ng-template>

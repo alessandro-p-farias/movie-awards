@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { TableModule } from 'primeng/table';
+
 import { ProducersWinningIntervalComponent } from './producers-winning-interval.component';
 
 describe('ProducersWinningIntervalComponent', () => {
@@ -8,7 +10,10 @@ describe('ProducersWinningIntervalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProducersWinningIntervalComponent ]
+      declarations: [ ProducersWinningIntervalComponent ],
+      imports: [
+        TableModule
+      ]
     })
     .compileComponents();
 
@@ -19,5 +24,19 @@ describe('ProducersWinningIntervalComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have the max interval table to display', () => {
+    const table = fixture.debugElement.nativeElement.querySelector('#maxIntervalTable');
+    expect(table.innerHTML.length).toBeGreaterThan(0);
+  });
+
+  it('should have the min interval table to display', () => {
+    const table = fixture.debugElement.nativeElement.querySelector('#minIntervalTable');
+    expect(table.innerHTML.length).toBeGreaterThan(0);
+  });
+
+  it('should define variable intervals', () => {
+    expect(fixture.componentInstance.intervals).toBeDefined();
   });
 });

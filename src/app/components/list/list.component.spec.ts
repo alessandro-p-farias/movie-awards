@@ -1,6 +1,8 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ListComponent } from './list.component';
+import { MoviesListModule } from '../table-components/movies-list/movies-list.module';
 
 describe('ListComponent', () => {
   let component: ListComponent;
@@ -8,9 +10,13 @@ describe('ListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListComponent ]
+      declarations: [ListComponent],
+      imports: [
+        MoviesListModule,
+        HttpClientTestingModule
+      ]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(ListComponent);
     component = fixture.componentInstance;
@@ -19,5 +25,9 @@ describe('ListComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render movies list app', () => {
+    expect(fixture.debugElement.nativeElement.innerHTML).toContain('<app-movies-list');
   });
 });

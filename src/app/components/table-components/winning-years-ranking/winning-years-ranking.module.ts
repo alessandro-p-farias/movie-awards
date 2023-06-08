@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
 
 import { TableModule } from 'primeng/table';
 
@@ -15,7 +14,6 @@ import { WinningYearsRankingComponent } from './winning-years-ranking.component'
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     TableModule
   ],
   providers: [],

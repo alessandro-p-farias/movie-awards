@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
 
 import { CardModule } from 'primeng/card';
 
@@ -16,7 +15,6 @@ import { TopThreeModule } from '../table-components/top-three/top-three.module';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     CardModule,
 
     ProducersWinningIntervalModule,

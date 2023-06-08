@@ -1,15 +1,15 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { By } from '@angular/platform-browser';
+import { Location } from '@angular/common';
+import { Routes } from '@angular/router';
 
 import { HomeComponent } from './home.component';
 import { DashboardModule } from '../dashboard/dashboard.module';
 import { ListModule } from '../list/list.module';
-import { ButtonModule } from 'primeng/button';
-import { By } from '@angular/platform-browser';
-import { Routes } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
 import { ListComponent } from '../list/list.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
-import { Location } from '@angular/common';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -27,8 +27,7 @@ describe('HomeComponent', () => {
         RouterTestingModule.withRoutes(routes),
         DashboardModule,
         ListModule,
-
-        ButtonModule
+        HttpClientTestingModule
       ]
     }).compileComponents();
 
@@ -47,12 +46,12 @@ describe('HomeComponent', () => {
     expect(board.innerHTML.length).toBeGreaterThan(0)
   })
 
-  it('should have text dashboard in the button dashboard', () => {
+  it('should have the text dashboard in the button dashboard', () => {
     const btn = fixture.debugElement.nativeElement.querySelector('#buttonDashboard');
     expect(btn.innerText).toBe('Dashboard');
   });
 
-  it('should have text list in the button list', () => {
+  it('should have the text list in the button list', () => {
     const btn = fixture.debugElement.nativeElement.querySelector('#buttonList');
     expect(btn.innerText).toContain('List');
   });

@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { TableModule } from 'primeng/table';
+
 import { TopThreeComponent } from './top-three.component';
 
 describe('TopThreeComponent', () => {
@@ -8,9 +10,12 @@ describe('TopThreeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TopThreeComponent ]
+      declarations: [TopThreeComponent],
+      imports: [
+        TableModule
+      ]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(TopThreeComponent);
     component = fixture.componentInstance;
@@ -19,5 +24,14 @@ describe('TopThreeComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have a table to display', () => {
+    const table = fixture.debugElement.nativeElement.querySelector('#topThreeTable');
+    expect(table.innerHTML.length).toBeGreaterThan(0);
+  });
+
+  it('should define variable topThree', () => {
+    expect(fixture.componentInstance.topThree).toBeDefined();
   });
 });

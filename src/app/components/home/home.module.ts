@@ -5,7 +5,6 @@ import { ButtonModule } from 'primeng/button';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
-
 import { DashboardModule } from '../dashboard/dashboard.module';
 import { ListModule } from '../list/list.module';
 
