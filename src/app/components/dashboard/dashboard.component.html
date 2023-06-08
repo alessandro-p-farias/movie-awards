@@ -3,13 +3,21 @@
     <span>Dashboard</span>
   </div>
   <div class="sm:col-12 md:col-12 lg:col-12 xl:col-6">
-    <app-producers-winning-interval></app-producers-winning-interval>
+    <p-card subheader="Producers with longest and shotest interval between wins">
+      <app-producers-winning-interval></app-producers-winning-interval>
+    </p-card>
     <br>
-    <app-winning-years-ranking></app-winning-years-ranking>
+    <p-card subheader="List years with multiple winners">
+      <app-winning-years-ranking></app-winning-years-ranking>
+    </p-card>
   </div>
   <div class="sm:col-12 md:col-12 lg:col-12 xl:col-6">
-    <app-top-three></app-top-three>
+    <p-card subheader="Top 3 studios with winners">
+      <app-top-three></app-top-three>
+    </p-card>
     <br>
-    <app-winners-by-year></app-winners-by-year>
+    <p-card subheader="Winners by year">
+      <app-winners-by-year></app-winners-by-year>
+    </p-card>
   </div>
 </div>
