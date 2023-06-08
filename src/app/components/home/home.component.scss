@@ -1,13 +1,16 @@
 @import "./../../../variables.scss";
 
 .top-bar {
-    height: 60px;
-    padding: 0 2rem;
-    background-color: $primaryColor;
     display: flex;
     align-items: center;
     font-weight: bold;
     color: $fontColor;
+    
+    height: 60px;
+    padding: 0 2rem;
+    background-color: $primaryColor;
+    position: sticky;
+    top: 0;
 }
 
 .body-home {

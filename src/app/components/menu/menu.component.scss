@@ -3,6 +3,8 @@
 .menu {
     padding: 1rem;
     background-color: $backgroundColor;
+    position: sticky;
+    top: 60px;
     height: calc(100vh - 60px);
 }
 

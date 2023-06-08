@@ -1,0 +1,45 @@
+<p-card subheader="Producers with longest and shotest interval between wins">
+  <p-table [value]="intervals.max ?? []">
+    <ng-template pTemplate="caption">
+      Maximum
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th class="center-align">Producer</th>
+        <th class="center-align">Interval</th>
+        <th class="center-align">Previus Year</th>
+        <th class="center-align">Following Year</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-interval>
+      <tr>
+        <td>{{ interval.producer }}</td>
+        <td>{{ interval.interval }}</td>
+        <td>{{ interval.previousWin }}</td>
+        <td>{{ interval.followingWin }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <br>
+  <p-table [value]="intervals.min ?? []">
+    <ng-template pTemplate="caption">
+      Minimum
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th class="center-align">Producer</th>
+        <th class="center-align">Interval</th>
+        <th class="center-align">Previus Year</th>
+        <th class="center-align">Following Year</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-interval>
+      <tr>
+        <td>{{ interval.producer }}</td>
+        <td>{{ interval.interval }}</td>
+        <td>{{ interval.previousWin }}</td>
+        <td>{{ interval.followingWin }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-card>
