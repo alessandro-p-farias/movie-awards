@@ -26,7 +26,9 @@ export class MoviesListComponent implements OnInit {
   }
 
   async getMovies() {
-    this.movies = await this.apiService.getMovies(this.yearFilter, this.winnerFilter);
+    // get movies from the API
+    const movies = await this.apiService.getMovies(this.yearFilter, this.winnerFilter);
+    console.log(movies);
   }
 
 }
