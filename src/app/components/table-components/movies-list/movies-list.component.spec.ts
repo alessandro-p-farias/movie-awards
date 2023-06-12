@@ -68,4 +68,13 @@ describe('MoviesListComponent', () => {
 
     expect(fixture.componentInstance.winnerOptions).toEqual(expetedValue);
   });
+
+  describe('calculatePageNumber', () => {
+    it('should calculate the page number correctly', () => {
+      expect(component.calculatePageNumber(60, 30)).toEqual(2);
+    })
+    it('should return the rounded value if the parameters where incorrectly', () => {
+      expect(component.calculatePageNumber(66, 30)).toEqual(2);
+    })
+  });
 });

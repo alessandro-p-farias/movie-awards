@@ -1,4 +1,6 @@
-<p-table id="moviesTable" [value]="movies" [tableStyle]="{ 'min-width': '50rem' }">
+<p-table id="moviesTable" [value]="movies?.content ?? []" [tableStyle]="{ 'min-width': '50rem' }"
+  [rows]="movies?.pageable?.pageSize ?? 10" [paginator]="true" [first]="movies?.pageable?.offset ?? 0" [totalRecords]="movies?.totalElements ?? 0" [lazy]="true"
+  (onLazyLoad)="getMovies($event)">
   <ng-template pTemplate="header">
     <tr>
       <th style="width: 15%;" class="center-align">ID</th>
@@ -9,11 +11,11 @@
     <tr>
       <th style="width: 15%;" class="center-align"></th>
       <th style="width: 30%;" class="center-align">
-        <input type="text" pInputText [(ngModel)]="yearFilter" />
+        <input type="text" pInputText [(ngModel)]="yearFilter" (blur)="getMovies()" />
       </th>
       <th style="width: 40%;" class="center-align"></th>
       <th style="width: 15%;" class="center-align">
-        <p-dropdown [options]="winnerOptions" appendTo="body" [(ngModel)]="winnerFilter"></p-dropdown>
+        <p-dropdown [options]="winnerOptions" appendTo="body" [(ngModel)]="winnerFilter" (onChange)="getMovies()"></p-dropdown>
       </th>
     </tr>
   </ng-template>
@@ -22,7 +24,7 @@
       <td>{{ movie.id }}</td>
       <td>{{ movie.year }}</td>
       <td>{{ movie.title }}</td>
-      <td>{{ movie.winner }}</td>
+      <td>{{ movie.winner ? 'Yes' : 'No'}}</td>
     </tr>
   </ng-template>
 </p-table>
