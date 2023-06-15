@@ -1,8 +1,10 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TableModule } from 'primeng/table';
 
 import { WinningYearsRankingComponent } from './winning-years-ranking.component';
+import { ApiService } from 'src/app/services/api.service';
 
 describe('WinningYearsRankingComponent', () => {
   let component: WinningYearsRankingComponent;
@@ -11,8 +13,10 @@ describe('WinningYearsRankingComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [WinningYearsRankingComponent],
+      providers: [ApiService],
       imports: [
-        TableModule
+        TableModule,
+        HttpClientTestingModule
       ]
     })
       .compileComponents();

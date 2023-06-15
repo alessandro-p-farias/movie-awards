@@ -1,12 +1,13 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CardModule } from 'primeng/card';
 
 import { DashboardComponent } from './dashboard.component';
 import { ProducersWinningIntervalModule } from '../table-components/producers-winning-interval/producers-winning-interval.module';
-import { WinnersByYearModule } from '../table-components/winners-by-year/winners-by-year.module';
 import { WinningYearsRankingModule } from '../table-components/winning-years-ranking/winning-years-ranking.module';
 import { TopThreeModule } from '../table-components/top-three/top-three.module';
+import { MoviesListModule } from '../table-components/movies-list/movies-list.module';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -16,11 +17,12 @@ describe('DashboardComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ DashboardComponent ],
       imports: [
+        HttpClientTestingModule,
         CardModule,
         ProducersWinningIntervalModule,
-        WinnersByYearModule,
         WinningYearsRankingModule,
-        TopThreeModule
+        TopThreeModule,
+        MoviesListModule
       ]
     })
     .compileComponents();
@@ -43,7 +45,7 @@ describe('DashboardComponent', () => {
   });
 
   it('should render winners by year app', () => {
-    expect(fixture.debugElement.nativeElement.innerHTML).toContain('<app-winners-by-year');
+    expect(fixture.debugElement.nativeElement.innerHTML).toContain('<app-movies-list');
   });
 
   it('should render winning years ranking app', () => {

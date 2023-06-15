@@ -7,30 +7,45 @@
     color: $fontColor;
     
     height: 60px;
-    padding: 0 2rem;
+    padding: 0 1rem;
     background-color: $primaryColor;
     position: sticky;
     top: 0;
+    z-index: 100;
 }
 
 .body-home {
     padding: 1rem;
 }
 
-.menu {
-    padding: 1rem;
-    background-color: $backgroundColor;
-    position: sticky;
-    top: 60px;
-    height: calc(100vh - 60px);
+.menu-item {
+    width: 100px;
 }
 
-::ng-deep .menu-item button {
-    display: inline-block;
-    text-align: center;
-    margin-bottom: 1rem;
-    width: 9rem;
-    &:focus {
-        background-color: $primaryColorFocus
+ul {
+    list-style-type: none;  
+    padding: 0;
+    text-decoration: none;
+}
+
+a, li{
+    list-style-type: none;  
+    font-weight: bold;  
+    font-size: 18px;  
+    text-decoration: none;
+    color: #636363;
+
+    &:hover {
+        transition: .5s;
+        color: $primaryColor;
     }
 }
+
+.title {
+    padding: 10px;
+    background-color: #efefef;
+    border-radius: 10px;
+}
+
+
+  
