@@ -1,15 +1,24 @@
 <div class="top-bar">
+  <p-button (click)="showMenu=!showMenu" icon="pi pi-bars"></p-button>
+  &nbsp;&nbsp;
   <span>MOVIES AWARDS - Golden Raspberry Awards</span>
 </div>
-<div class="grid grid-nogutter">
-  <div class="col-12 md:col-3 lg:col-2 xl:col-2">
-    <div class="menu">
-      <p-button id="buttonDashboard" class="menu-item" [routerLink]="['/dashboard']">Dashboard</p-button>
-      <br>
-      <p-button id="buttonList" class="menu-item"  [routerLink]="['/list']">List</p-button>
-    </div>
+
+
+<p-sidebar id="menu" [(visible)]="showMenu" position="left">
+  <div style="text-align: center;">
+    <h4 class="title">Views</h4>
+    <ul class="menu">
+      <a id="buttonDashboard" href="#" [routerLink]="['/dashboard']" (click)="showMenu=false">
+        <li class="menuItem">DASHBOARD</li>
+      </a>
+      <a id="buttonList" href="#" [routerLink]="['/list']" (click)="showMenu=false">
+        <li class="menuItem">LIST</li>
+      </a>
+    </ul>
   </div>
-  <div class="col-12 md:col-9 lg:col-10 body-home">
-    <router-outlet></router-outlet>
-  </div>
+</p-sidebar>
+
+<div class="body-home">
+  <router-outlet></router-outlet>
 </div>

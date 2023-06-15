@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
+import { LazyLoadEvent } from 'primeng/api';
+
 import { MovieListModel } from 'src/app/models/movie-list.model';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -9,32 +12,46 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class MoviesListComponent implements OnInit {
 
+  @Input() showOnlyWinners: boolean = false;
+
   movies?: MovieListModel = new MovieListModel();
-  yearFilter = null;
-  winnerFilter = null;
+  yearFilter: number | null = null;
+  winnerFilter?: boolean | null = null;
   winnerOptions = [
     { label: 'All', value: null },
     { label: 'Yes', value: true },
     { label: 'No', value: false }
   ];
+  defaultNumbersOfRows = 15;
 
   constructor(
     private apiService: ApiService
   ) { }
 
   ngOnInit(): void {
-    this.getMovies();
+    if (this.showOnlyWinners) {
+      this.defaultNumbersOfRows = 5;
+      this.winnerFilter = true;
+    }
+    this.getData();
   }
 
-  async getMovies(tableEvent?: any) {
+  /**
+   * Get the list of movies to populate the table
+   * @param tableEvent 
+   */
+  async getData(tableEvent?: LazyLoadEvent) {
     // if no paging parameters where sent, it will call for the first page
     let pageNumber = 0;
+    let rows = this.defaultNumbersOfRows
     if (tableEvent) {
-      pageNumber = this.calculatePageNumber(tableEvent?.first, tableEvent?.rows);
+      const first = tableEvent.first ?? 0;
+      const rows = tableEvent.rows ?? this.defaultNumbersOfRows;
+      pageNumber = this.calculatePageNumber(first, rows);
     }
 
     // get movies from the API
-    this.movies = await this.apiService.getMovies(pageNumber, this.yearFilter, this.winnerFilter);
+    this.movies = await this.apiService.getMovies(pageNumber, rows, this.yearFilter, this.winnerFilter);
   }
 
   /**
@@ -42,7 +59,8 @@ export class MoviesListComponent implements OnInit {
    * @returns number
    */
   calculatePageNumber(first: number, rows: number): number {
-    return Math.floor(first / (rows ?? 1));
+    const page = Math.floor(first / (rows ?? 1));
+    return isNaN(page) ? 0 : page;
   }
 
 }

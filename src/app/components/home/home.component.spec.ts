@@ -5,6 +5,9 @@ import { By } from '@angular/platform-browser';
 import { Location } from '@angular/common';
 import { Routes } from '@angular/router';
 
+import { ButtonModule } from 'primeng/button';
+import { SidebarModule } from 'primeng/sidebar';
+
 import { HomeComponent } from './home.component';
 import { DashboardModule } from '../dashboard/dashboard.module';
 import { ListModule } from '../list/list.module';
@@ -27,7 +30,9 @@ describe('HomeComponent', () => {
         RouterTestingModule.withRoutes(routes),
         DashboardModule,
         ListModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        ButtonModule,
+        SidebarModule
       ]
     }).compileComponents();
 
@@ -40,33 +45,55 @@ describe('HomeComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have content on menu', () => {
-    const board = fixture.debugElement.query(By.css('.menu')).nativeElement;
-    expect(board.innerHTML).not.toBeNull();
-    expect(board.innerHTML.length).toBeGreaterThan(0)
-  })
+  it('should display and hide menu correctly', () => {
+    component.showMenu = true;
+    fixture.detectChanges();
+    expect(fixture.debugElement.nativeElement.querySelector('#menu')).not.toBeUndefined();
 
-  it('should have the text dashboard in the button dashboard', () => {
-    const btn = fixture.debugElement.nativeElement.querySelector('#buttonDashboard');
-    expect(btn.innerText).toBe('Dashboard');
+    component.showMenu = false;
+    fixture.detectChanges();
+    expect(fixture.debugElement.nativeElement.querySelector('#menu')).not.toBeUndefined();
   });
 
-  it('should have the text list in the button list', () => {
+  it('should have content on menu', () => {
+    component.showMenu = true;
+    fixture.detectChanges();
+    const menu = fixture.debugElement.query(By.css('.menu')).nativeElement;
+    expect(menu.innerHTML).not.toBeNull();
+    expect(menu.innerHTML.length).toBeGreaterThan(0)
+  })
+
+  it('should have the text dashboard in the button dashboard when displays the menu', () => {
+    component.showMenu = true;
+    fixture.detectChanges();
+    const btn = fixture.debugElement.nativeElement.querySelector('#buttonDashboard');
+    expect(btn.innerText).toBe('DASHBOARD');
+  });
+
+  it('should have the text list in the button list when displays the menu', () => {
+    component.showMenu = true;
+    fixture.detectChanges();
     const btn = fixture.debugElement.nativeElement.querySelector('#buttonList');
-    expect(btn.innerText).toContain('List');
+    expect(btn.innerText).toContain('LIST');
   });
 
   it('should button dashboard point to dashboard page', () => {
+    component.showMenu = true;
+    fixture.detectChanges();
     const btn = fixture.debugElement.query(By.css('#buttonDashboard'))
     expect(btn.attributes['ng-reflect-router-link']).toBe('/dashboard');
   });
 
   it('should button dashboard point to dashboard page', () => {
+    component.showMenu = true;
+    fixture.detectChanges();
     const btn = fixture.debugElement.query(By.css('#buttonList'))
     expect(btn.attributes['ng-reflect-router-link']).toBe('/list');
   });
 
   it('should go to dashboard view after click in button dashboard', fakeAsync(() => {
+    component.showMenu = true;
+    fixture.detectChanges();
     fixture.debugElement.query(By.css('#buttonDashboard')).nativeElement.click();
     fixture.detectChanges();
     tick();
@@ -75,6 +102,8 @@ describe('HomeComponent', () => {
   }));
 
   it('should go to list view after click in button list', fakeAsync(() => {
+    component.showMenu = true;
+    fixture.detectChanges();
     fixture.debugElement.query(By.css('#buttonList')).nativeElement.click();
     fixture.detectChanges();
     tick();

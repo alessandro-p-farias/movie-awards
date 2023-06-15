@@ -12,6 +12,7 @@ body {
 .view-title {
     background-color: $backgroundColor;
     border-radius: .3rem;
+    font-weight: bold;
 }
 
 .center-align {
@@ -28,5 +29,31 @@ body {
 
 .top-align {
     display: flex;
-    align-items: start;
+    align-items: flex-start;
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+    padding: 0.5rem 0.6rem;
+}
+
+.p-component {
+    font-size: .9rem;
+}
+
+.p-datatable .p-datatable-thead > tr > th, .p-datatable .p-datatable-header {
+    padding: 0.6rem 0.7rem
+}
+
+.p-paginator .p-paginator-pages .p-paginator-page {
+    min-width: 2rem;
+    height: 2rem;
+}
+
+.p-card .p-card-subtitle {
+    font-weight: 500;
+    margin: 0;
+}
+
+.grid {
+    margin: 0;
 }

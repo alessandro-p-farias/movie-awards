@@ -22,26 +22,16 @@ export class ApiService {
   /**
    * Get a list of all movies
    * @param pageNumber number 
-   * @param year number
-   * @param winner boolean 
+   * @param rows number 
+   * @param year number | null
+   * @param winner boolean | null
    * @returns Promise<MovieListModel>
    */
-  async getMovies(pageNumber: number, year?: number | null, winner?: boolean | null): Promise<MovieListModel> {
-    let queryParams = `?page=${pageNumber}&size=10`;
+  async getMovies(pageNumber: number, rows: number, year?: number | null, winner?: boolean | null): Promise<MovieListModel> {
+    let queryParams = `?page=${pageNumber}&size=${rows}`;
     queryParams += year ? `&year=${year}` : '';
     queryParams += winner ? `&winner=${winner}` : '';
     return lastValueFrom(this.httpClient.get(`${this.API_URL}${queryParams}`));
-  }
-
-  /**
-   * Get winning movies by year
-   * @param year number
-   * @returns Promise<MovieModel>
-   */
-  async getWinnersByYear(year?: number | null): Promise<MovieModel> {
-    let queryParams = '';
-    queryParams += year ? `&year=${year}` : '';
-    return lastValueFrom(this.httpClient.get(`${this.API_URL}?winner=true`));
   }
 
   /**
@@ -49,7 +39,8 @@ export class ApiService {
    * @returns Promise<TopThreeModel>
    */
   async getTopThree(): Promise<TopThreeModel> {
-    return lastValueFrom(this.httpClient.get(`${this.API_URL}?projection=studios-with-win-count`));
+    const queryParam = '?projection=studios-with-win-count';
+    return lastValueFrom(this.httpClient.get<TopThreeModel>(`${this.API_URL}${queryParam}`));
   }
 
   /**
@@ -57,7 +48,8 @@ export class ApiService {
    * @returns Promise<WinningYearRankingModel>
    */
   async getWinningYearsRanking(): Promise<WinningYearRankingModel> {
-    return lastValueFrom(this.httpClient.get(`${this.API_URL}?projection=years-with-mulple-winners`));
+    const queryParam = '?projection=years-with-multiple-winners';
+    return lastValueFrom(this.httpClient.get<WinningYearRankingModel>(`${this.API_URL}${queryParam}`));
   }
 
   /**
@@ -65,6 +57,7 @@ export class ApiService {
    * @returns Promise<ProducerWinnnigIntervalModel>
    */
   async getProducersWinningInterval(): Promise<ProducerWinnnigIntervalModel> {
-    return lastValueFrom(this.httpClient.get(`${this.API_URL}?projection=max-min-win-interval-for-producers`));
+    const queryParam = '?projection=max-min-win-interval-for-producers';
+    return lastValueFrom(this.httpClient.get<ProducerWinnnigIntervalModel>(`${this.API_URL}${queryParam}`));
   }
 }

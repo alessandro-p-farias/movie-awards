@@ -1,4 +1,4 @@
-<p-table id="topThreeTable" [value]="topThree.studios">
+<p-table id="topThreeTable" [value]="topThree.studios ?? []">
   <ng-template pTemplate="header">
     <tr>
       <th class="center-align">Name</th>

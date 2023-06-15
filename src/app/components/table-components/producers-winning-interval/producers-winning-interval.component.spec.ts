@@ -1,8 +1,10 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TableModule } from 'primeng/table';
 
 import { ProducersWinningIntervalComponent } from './producers-winning-interval.component';
+import { ApiService } from 'src/app/services/api.service';
 
 describe('ProducersWinningIntervalComponent', () => {
   let component: ProducersWinningIntervalComponent;
@@ -11,8 +13,10 @@ describe('ProducersWinningIntervalComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ ProducersWinningIntervalComponent ],
+      providers: [ApiService],
       imports: [
-        TableModule
+        TableModule,
+        HttpClientTestingModule
       ]
     })
     .compileComponents();

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { ButtonModule } from 'primeng/button';
+import { SidebarModule } from 'primeng/sidebar';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
@@ -19,7 +20,8 @@ import { ListModule } from '../list/list.module';
     DashboardModule,
     ListModule,
 
-    ButtonModule
+    ButtonModule,
+    SidebarModule
   ],
   providers: [],
 })
