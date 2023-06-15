@@ -29,10 +29,8 @@ export class MoviesListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (this.showOnlyWinners) {
-      this.defaultNumbersOfRows = 5;
-      this.winnerFilter = true;
-    }
+    this.defaultNumbersOfRows = this.showOnlyWinners ? 5 : this.defaultNumbersOfRows;
+    this.winnerFilter = this.showOnlyWinners ? true : null;
     this.getData();
   }
 
@@ -56,11 +54,9 @@ export class MoviesListComponent implements OnInit {
   getPageNumber(tableEvent?: LazyLoadEvent): number {
     // if no paging parameters where sent, it will call for the first page
     let pageNumber = 0;
-    if (tableEvent) {
-      const first = tableEvent.first ?? 0;
-      const rows = tableEvent.rows ?? this.defaultNumbersOfRows;
-      pageNumber = this.calculatePageNumber(first, rows);
-    }
+    const first = tableEvent?.first ?? 0;
+    const rows = tableEvent?.rows ?? this.defaultNumbersOfRows;
+    pageNumber = this.calculatePageNumber(first, rows);
 
     return pageNumber;
   }

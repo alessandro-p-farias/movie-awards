@@ -58,6 +58,11 @@ describe('MoviesListComponent', () => {
 
   it('should define variable winnerOptions', () => {
     expect(fixture.componentInstance.winnerOptions).toBeDefined();
+    
+  });
+
+  it('should define variable defaultNumbersOfRows', () => {
+    expect(fixture.componentInstance.defaultNumbersOfRows).toBeDefined();
   });
 
   it('should create variable winnerOptions correctly', () => {
