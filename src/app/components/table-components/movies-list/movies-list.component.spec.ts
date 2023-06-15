@@ -133,7 +133,7 @@ describe('MoviesListComponent', () => {
     expect(fixture.nativeElement.querySelector('#winnerCell')).not.toBeNull();
   });
 
-  describe('calculatePageNumber', () => {
+  describe('calculatePageNumber()', () => {
     it('should calculate the page number correctly', () => {
       expect(component.calculatePageNumber(60, 30)).toEqual(2);
     })
@@ -145,6 +145,13 @@ describe('MoviesListComponent', () => {
       expect(component.calculatePageNumber(0, 10)).not.toBeNaN();
       expect(component.calculatePageNumber(23, 231)).not.toBeNaN();
       expect(component.calculatePageNumber(111123, 21231)).not.toBeNaN();
+    })
+  });
+
+  describe('getPageNumber()', () => {
+    it('should return a number no matter the parameters sent', () => {
+      expect(component.getPageNumber()).not.toBeNaN();
+      expect(component.getPageNumber({ first: 123, rows: 3444 })).not.toBeNaN();
     })
   });
 });

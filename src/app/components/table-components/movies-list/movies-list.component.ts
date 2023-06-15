@@ -38,20 +38,31 @@ export class MoviesListComponent implements OnInit {
 
   /**
    * Get the list of movies to populate the table
-   * @param tableEvent 
+   * @param tableEvent LazyLoadEvent
    */
   async getData(tableEvent?: LazyLoadEvent) {
+    let rows = tableEvent?.rows ?? this.defaultNumbersOfRows;
+    const pageNumber = this.getPageNumber(tableEvent);
+
+    // get movies from the API
+    this.movies = await this.apiService.getMovies(pageNumber, rows, this.yearFilter, this.winnerFilter);
+  }
+
+  /**
+   * Get the page number based on the parameters sent or the first page if no parameter where sent
+   * @param tableEvent LazyLoadEvent
+   * @returns 
+   */
+  getPageNumber(tableEvent?: LazyLoadEvent): number {
     // if no paging parameters where sent, it will call for the first page
     let pageNumber = 0;
-    let rows = this.defaultNumbersOfRows
     if (tableEvent) {
       const first = tableEvent.first ?? 0;
       const rows = tableEvent.rows ?? this.defaultNumbersOfRows;
       pageNumber = this.calculatePageNumber(first, rows);
     }
 
-    // get movies from the API
-    this.movies = await this.apiService.getMovies(pageNumber, rows, this.yearFilter, this.winnerFilter);
+    return pageNumber;
   }
 
   /**

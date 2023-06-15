@@ -51,4 +51,9 @@ describe('DashboardComponent', () => {
   it('should render winning years ranking app', () => {
     expect(fixture.debugElement.nativeElement.innerHTML).toContain('<app-winning-years-ranking');
   });
+
+  it('should define variable showCompactVersionOfMoviesList as true', () => {
+    expect(component.showCompactVersionOfMoviesList).toBeDefined();
+    expect(component.showCompactVersionOfMoviesList).toBeTrue();
+  });
 });

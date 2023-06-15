@@ -25,11 +25,7 @@ export class TopThreeComponent implements OnInit {
    */
   async getData() {
     const data = await this.apiService.getTopThree();
-    if (data.studios) {
-      this.topThree.studios = this.getTopThree(data.studios ?? []);
-    } else {
-      this.topThree.studios = [];
-    }
+    this.topThree.studios = this.getTopThree(data.studios ?? []);
   }
 
   /**
