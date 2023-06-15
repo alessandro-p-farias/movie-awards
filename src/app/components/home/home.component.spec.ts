@@ -45,15 +45,13 @@ describe('HomeComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display and hide menu correctly', () => {
+  it('should have content on menu', () => {
     component.showMenu = true;
     fixture.detectChanges();
-    expect(fixture.debugElement.nativeElement.querySelector('#menu')).not.toBeUndefined();
-
-    component.showMenu = false;
-    fixture.detectChanges();
-    expect(fixture.debugElement.nativeElement.querySelector('#menu')).not.toBeUndefined();
-  });
+    const menu = fixture.debugElement.query(By.css('.menu')).nativeElement;
+    expect(menu.innerHTML).not.toBeNull();
+    expect(menu.innerHTML.length).toBeGreaterThan(0)
+  })
 
   it('should have content on menu', () => {
     component.showMenu = true;
