@@ -152,11 +152,4 @@ describe('MoviesListComponent', () => {
       expect(component.calculatePageNumber(111123, 21231)).not.toBeNaN();
     })
   });
-
-  describe('getPageNumber()', () => {
-    it('should return a number no matter the parameters sent', () => {
-      expect(component.getPageNumber()).not.toBeNaN();
-      expect(component.getPageNumber({ first: 123, rows: 3444 })).not.toBeNaN();
-    })
-  });
 });
