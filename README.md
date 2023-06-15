@@ -8,7 +8,7 @@ To start using the project is necessary to have Node.js installed (version 14.20
 If you haven't installed the @angular/cli package yet, install it. 
 Istall with npm:
 
-`npm install -g @angular/cli@^15`
+`npm install -g @angular/cli@^14`
 
 ## Dependencies
 For the project to run, you have to install the project denpendencies.
