@@ -1,6 +1,6 @@
-<p-table id="moviesTable" [value]="movies?.content ?? []"
-  [rows]="movies?.pageable?.pageSize ?? defaultNumbersOfRows" [paginator]="true" [first]="movies?.pageable?.offset ?? 0"
-  [totalRecords]="movies?.totalElements ?? 0" [lazy]="true" (onLazyLoad)="getData($event)">
+<p-table id="moviesTable" [value]="movies?.content ?? []" [rows]="movies?.pageable?.pageSize ?? defaultNumbersOfRows"
+  [paginator]="true" [first]="movies?.pageable?.offset ?? 0" [totalRecords]="movies?.totalElements ?? 0" [lazy]="true"
+  (onLazyLoad)="getData($event)">
   <ng-template pTemplate="header">
     <tr>
       <th style="width: 15%;" class="center-align">ID</th>
@@ -11,7 +11,8 @@
     <tr>
       <th style="width: 15%;" class="center-align"></th>
       <th style="width: 20%;" class="center-align">
-        <input style="width: 80px;" type="text" pInputText [(ngModel)]="yearFilter" (blur)="getData()" />
+        <input style="width: 100px;" type="text" pInputText placeholder="Filter by Year" [(ngModel)]="yearFilter"
+          (blur)="getData()" />
       </th>
       <th style="width: 40%;" class="center-align"></th>
       <th style="width: 15%;" class="center-align" id="winnerFilter" *ngIf="!showOnlyWinners">

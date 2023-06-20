@@ -23,6 +23,7 @@ export class MoviesListComponent implements OnInit {
     { label: 'No', value: false }
   ];
   defaultNumbersOfRows = 15;
+  pagingParameters?: { paginate: boolean; rows: number, total: number };
 
   constructor(
     private apiService: ApiService

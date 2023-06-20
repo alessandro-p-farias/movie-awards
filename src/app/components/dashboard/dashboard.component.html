@@ -1,14 +1,14 @@
 <div class="grid">
-  <div class="col-12 view-title">
+  <div class="col-12 view-title-container">
     <span>DASHBOARD</span>
   </div>
   <div class="sm:col-12 md:col-12 lg:col-12 xl:col-6" style="padding-top: 1rem;">
-    <p-card subheader="Producers with longest and shotest interval between wins">
-      <app-producers-winning-interval></app-producers-winning-interval>
-    </p-card>
-    <br>
     <p-card subheader="List years with multiple winners">
       <app-winning-years-ranking></app-winning-years-ranking>
+    </p-card>
+    <br>
+    <p-card subheader="Producers with longest and shortest interval between wins">
+      <app-producers-winning-interval></app-producers-winning-interval>
     </p-card>
   </div>
   <div class="sm:col-12 md:col-12 lg:col-12 xl:col-6" style="padding-top: 1rem;">

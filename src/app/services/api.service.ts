@@ -30,7 +30,7 @@ export class ApiService {
   async getMovies(pageNumber: number, rows: number, year?: number | null, winner?: boolean | null): Promise<MovieListModel> {
     let queryParams = `?page=${pageNumber}&size=${rows}`;
     queryParams += year ? `&year=${year}` : '';
-    queryParams += winner ? `&winner=${winner}` : '';
+    queryParams += winner != null ? `&winner=${winner}` : '';
     return lastValueFrom(this.httpClient.get(`${this.API_URL}${queryParams}`));
   }
 
