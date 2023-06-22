@@ -12,7 +12,7 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class MoviesListComponent implements OnInit {
 
-  @Input() showOnlyWinners: boolean = false;
+  @Input() compactViewMode: boolean = false;
 
   movies?: MovieListModel = new MovieListModel();
   yearFilter: number | null = null;
@@ -29,9 +29,9 @@ export class MoviesListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.defaultNumbersOfRows = this.showOnlyWinners ? 5 : this.defaultNumbersOfRows;
-    this.winnerFilter = this.showOnlyWinners ? true : null;
-    if (!this.showOnlyWinners) {
+    this.defaultNumbersOfRows = this.compactViewMode ? 5 : this.defaultNumbersOfRows;
+    this.winnerFilter = this.compactViewMode ? true : null;
+    if (!this.compactViewMode) {
       this.getData();
     }
   }
