@@ -5,6 +5,7 @@ import { TableModule } from 'primeng/table';
 
 import { TopThreeComponent } from './top-three.component';
 import { ApiService } from 'src/app/services/api.service';
+import { StudioObject, TopThreeModel } from 'src/app/models/top-three.model';
 
 describe('TopThreeComponent', () => {
   let component: TopThreeComponent;
@@ -88,6 +89,12 @@ describe('TopThreeComponent', () => {
         }
       ];
       const expected = fakeData;
+      expect(component.getTopThree(fakeData)).toEqual(expected);
+    })
+
+    it('should return an empty array if it is undefined', () => {
+      const fakeData = [new StudioObject()];
+      const expected = [new StudioObject()];
       expect(component.getTopThree(fakeData)).toEqual(expected);
     })
   });

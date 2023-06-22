@@ -1,8 +1,8 @@
-import { ApiService } from "./api.service";
-import { HttpClient } from "@angular/common/http";
-import { NotFoundError, of } from "rxjs";
 import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
 import { TestBed } from "@angular/core/testing";
+import { HttpClient } from "@angular/common/http";
+
+import { ApiService } from "./api.service";
 import { MovieListModel } from "../models/movie-list.model";
 import { TopThreeModel } from "../models/top-three.model";
 import { MovieModel } from "../models/movie.model";
@@ -14,8 +14,8 @@ describe('ApiService', () => {
   let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [
         ApiService,
@@ -29,6 +29,23 @@ describe('ApiService', () => {
 
   it('should be created', () => {
     expect(apiService).toBeTruthy();
+  });
+
+  it('should correctly define the query parameters', () => {
+    let queryParameters = apiService.defineQueryParameters();
+    expect(queryParameters).toBe("");
+
+    queryParameters = apiService.defineQueryParameters(1998);
+    expect(queryParameters).toContain("&year=");
+    expect(queryParameters).not.toContain("&winner=");
+
+    queryParameters = apiService.defineQueryParameters(1889, false);
+    expect(queryParameters).toContain("&year=");
+    expect(queryParameters).toContain("&winner=");
+
+    queryParameters = apiService.defineQueryParameters(null, true);
+    expect(queryParameters).not.toContain("&year=");
+    expect(queryParameters).toContain("&winner=");
   });
 
   it('should call api only with get method', () => {
@@ -86,7 +103,7 @@ describe('ApiService', () => {
 
   describe('getTopThree()', () => {
     it('should get the top three studios list when called', (done: DoneFn) => {
-      const url = `${apiService.API_URL}/movies?winner=true`;
+      const url = `${apiService.API_URL}/movies?projection=studios-with-win-count`;
       const topThree = new TopThreeModel;
       httpClient.get<TopThreeModel>(url).subscribe({
         next: (data) => {

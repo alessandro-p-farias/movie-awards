@@ -25,7 +25,7 @@ export class TopThreeComponent implements OnInit {
    */
   async getData() {
     const data = await this.apiService.getTopThree();
-    this.topThree.studios = this.getTopThree(data.studios ?? []);
+    this.topThree.studios = this.getTopThree(data?.studios);
   }
 
   /**
@@ -33,8 +33,11 @@ export class TopThreeComponent implements OnInit {
    * @param data Array<TopThreeModel>
    * @returns Array<TopThreeModel>
    */
-  getTopThree(data: Array<StudioObject>): Array<StudioObject> {
+  getTopThree(data?: Array<StudioObject>): Array<StudioObject> {
     // if the array contains less than three elements, it return all elements
+    if (!data) {
+      return [];
+    }
     const end = (data?.length < 3) ? data?.length : 3;
     return data.slice(0, end);
   }

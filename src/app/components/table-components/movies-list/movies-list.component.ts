@@ -31,7 +31,9 @@ export class MoviesListComponent implements OnInit {
   ngOnInit(): void {
     this.defaultNumbersOfRows = this.showOnlyWinners ? 5 : this.defaultNumbersOfRows;
     this.winnerFilter = this.showOnlyWinners ? true : null;
-    this.getData();
+    if (!this.showOnlyWinners) {
+      this.getData();
+    }
   }
 
   /**

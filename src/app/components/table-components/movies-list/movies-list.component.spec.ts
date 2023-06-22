@@ -39,9 +39,16 @@ describe('MoviesListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have a table to display', () => {
-    const table = fixture.debugElement.nativeElement.querySelector('#moviesTable');
-    expect(table.innerHTML.length).toBeGreaterThan(0);
+  it('should display de correct table', () => {
+    component.showOnlyWinners = true;
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('#fullMoviesTable')).toBeNull();
+    expect(fixture.nativeElement.querySelector('#compactMoviesTable')).not.toBeNull();
+    
+    component.showOnlyWinners = false;
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('#compactMoviesTable')).toBeNull();
+    expect(fixture.nativeElement.querySelector('#fullMoviesTable')).not.toBeNull();
   });
 
   it('should define variable movies', () => {
@@ -127,15 +134,15 @@ describe('MoviesListComponent', () => {
     };
     component.showOnlyWinners = true;
     fixture.detectChanges();
-    expect(fixture.nativeElement.querySelector('#winnerFilter')).toBeNull();
+    expect(fixture.nativeElement.querySelector('#exclusiveYearFilter')).not.toBeNull();
+    expect(fixture.nativeElement.querySelector('#filterLine')).toBeNull();
     expect(fixture.nativeElement.querySelector('#winnerHeader')).toBeNull();
-    expect(fixture.nativeElement.querySelector('#winnerCell')).toBeNull();
 
     component.showOnlyWinners = false;
     fixture.detectChanges();
-    expect(fixture.nativeElement.querySelector('#winnerFilter')).not.toBeNull();
+    expect(fixture.nativeElement.querySelector('#exclusiveYearFilter')).toBeNull();
+    expect(fixture.nativeElement.querySelector('#filterLine')).not.toBeNull();
     expect(fixture.nativeElement.querySelector('#winnerHeader')).not.toBeNull();
-    expect(fixture.nativeElement.querySelector('#winnerCell')).not.toBeNull();
   });
 
   describe('calculatePageNumber()', () => {
@@ -151,5 +158,21 @@ describe('MoviesListComponent', () => {
       expect(component.calculatePageNumber(23, 231)).not.toBeNaN();
       expect(component.calculatePageNumber(111123, 21231)).not.toBeNaN();
     })
+  });
+
+  it ('should call getData automaticaly when component is in the list view', () => {
+    spyOn(component, "getData");
+    component.showOnlyWinners = false;
+    fixture.detectChanges();
+    component.ngOnInit();
+    expect(component.getData).toHaveBeenCalled();
+  });
+
+  it ('should not call getData automaticaly when component is in the dashboard view', () => {
+    spyOn(component, "getData");
+    component.showOnlyWinners = true;
+    fixture.detectChanges();
+    component.ngOnInit();
+    expect(component.getData).not.toHaveBeenCalled();
   });
 });
