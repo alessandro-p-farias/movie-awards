@@ -12,7 +12,7 @@ import { MoviesListComponent } from './movies-list.component';
 
 @NgModule({
   declarations: [
-    MoviesListComponent,
+    MoviesListComponent
   ],
   exports: [
     MoviesListComponent,

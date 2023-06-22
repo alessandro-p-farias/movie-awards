@@ -28,10 +28,17 @@ export class ApiService {
    * @returns Promise<MovieListModel>
    */
   async getMovies(pageNumber: number, rows: number, year?: number | null, winner?: boolean | null): Promise<MovieListModel> {
-    let queryParams = `?page=${pageNumber}&size=${rows}`;
+    const pagingParameters = `?page=${pageNumber}&size=${rows}`;
+    const queryParameters = this.defineQueryParameters(year, winner);
+    return lastValueFrom(this.httpClient.get(`${this.API_URL}${pagingParameters}${queryParameters}`));
+  }
+
+  defineQueryParameters(year?: number | null, winner?: boolean | null): string {
+    let queryParams = "";
     queryParams += year ? `&year=${year}` : '';
     queryParams += winner != null ? `&winner=${winner}` : '';
-    return lastValueFrom(this.httpClient.get(`${this.API_URL}${queryParams}`));
+
+    return queryParams;
   }
 
   /**

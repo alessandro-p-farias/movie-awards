@@ -23,7 +23,6 @@ export class MoviesListComponent implements OnInit {
     { label: 'No', value: false }
   ];
   defaultNumbersOfRows = 15;
-  pagingParameters?: { paginate: boolean; rows: number, total: number };
 
   constructor(
     private apiService: ApiService
@@ -32,7 +31,9 @@ export class MoviesListComponent implements OnInit {
   ngOnInit(): void {
     this.defaultNumbersOfRows = this.showOnlyWinners ? 5 : this.defaultNumbersOfRows;
     this.winnerFilter = this.showOnlyWinners ? true : null;
-    this.getData();
+    if (!this.showOnlyWinners) {
+      this.getData();
+    }
   }
 
   /**
