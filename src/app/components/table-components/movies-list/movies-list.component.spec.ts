@@ -39,18 +39,6 @@ describe('MoviesListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display de correct table', () => {
-    component.showOnlyWinners = true;
-    fixture.detectChanges();
-    expect(fixture.nativeElement.querySelector('#fullMoviesTable')).toBeNull();
-    expect(fixture.nativeElement.querySelector('#compactMoviesTable')).not.toBeNull();
-    
-    component.showOnlyWinners = false;
-    fixture.detectChanges();
-    expect(fixture.nativeElement.querySelector('#compactMoviesTable')).toBeNull();
-    expect(fixture.nativeElement.querySelector('#fullMoviesTable')).not.toBeNull();
-  });
-
   it('should define variable movies', () => {
     expect(fixture.componentInstance.movies).toBeDefined();
   });
@@ -132,17 +120,17 @@ describe('MoviesListComponent', () => {
       number: 0,
       numberOfElements: 2
     };
-    component.showOnlyWinners = true;
+    component.compactViewMode = true;
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelector('#exclusiveYearFilter')).not.toBeNull();
-    expect(fixture.nativeElement.querySelector('#filterLine')).toBeNull();
-    expect(fixture.nativeElement.querySelector('#winnerHeader')).toBeNull();
+    expect(fixture.nativeElement.querySelector('#fullMoviesTable')).toBeNull();
+    expect(fixture.nativeElement.querySelector('#compactMoviesTable')).not.toBeNull();
 
-    component.showOnlyWinners = false;
+    component.compactViewMode = false;
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelector('#exclusiveYearFilter')).toBeNull();
-    expect(fixture.nativeElement.querySelector('#filterLine')).not.toBeNull();
-    expect(fixture.nativeElement.querySelector('#winnerHeader')).not.toBeNull();
+    expect(fixture.nativeElement.querySelector('#compactMoviesTable')).toBeNull();
+    expect(fixture.nativeElement.querySelector('#fullMoviesTable')).not.toBeNull();
   });
 
   describe('calculatePageNumber()', () => {
@@ -162,7 +150,7 @@ describe('MoviesListComponent', () => {
 
   it ('should call getData automaticaly when component is in the list view', () => {
     spyOn(component, "getData");
-    component.showOnlyWinners = false;
+    component.compactViewMode = false;
     fixture.detectChanges();
     component.ngOnInit();
     expect(component.getData).toHaveBeenCalled();
@@ -170,7 +158,7 @@ describe('MoviesListComponent', () => {
 
   it ('should not call getData automaticaly when component is in the dashboard view', () => {
     spyOn(component, "getData");
-    component.showOnlyWinners = true;
+    component.compactViewMode = true;
     fixture.detectChanges();
     component.ngOnInit();
     expect(component.getData).not.toHaveBeenCalled();

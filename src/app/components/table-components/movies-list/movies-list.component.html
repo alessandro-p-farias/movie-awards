@@ -1,4 +1,4 @@
-<div id="exclusiveYearFilter" class="grid" *ngIf="showOnlyWinners">
+<div id="exclusiveYearFilter" class="grid" *ngIf="compactViewMode">
   <div class="col p-fluid">
     <input type="number" pInputText placeholder="Filter by Year" [(ngModel)]="yearFilter" min="1900" max="2100" />
   </div>
@@ -7,31 +7,14 @@
   </div>
 </div>
 
-<!-- Commom header section of the two tables -->
-<ng-template #tableHeader>
-  <tr>
-    <th style="width: 15%;" class="center-align">ID</th>
-    <th style="width: 20%;" class="center-align">Year</th>
-    <th style="width: 40%;" class="center-align">Title</th>
-    <th id="winnerHeader" style="width: 15%;" class="center-align" *ngIf="!showOnlyWinners">Winner</th>
-  </tr>
-  <tr id="filterLine" *ngIf="!showOnlyWinners">
-    <th style="width: 15%;" class="center-align"></th>
-    <th style="width: 20%;" class="center-align">
-      <input style="width: 100px;" type="number" pInputText placeholder="Filter by Year" [(ngModel)]="yearFilter" min="1900"
-        max="2100" (blur)="getData()" />
-    </th>
-    <th style="width: 40%;" class="center-align"></th>
-    <th style="width: 15%;" class="center-align">
-      <p-dropdown [options]="winnerOptions" appendTo="body" [(ngModel)]="winnerFilter" (onChange)="getData()"></p-dropdown>
-    </th>
-  </tr>
-</ng-template>
-
 <!-- Compact table displayed on the dashboard view -->
-<p-table *ngIf="showOnlyWinners" id="compactMoviesTable" [value]="movies?.content ?? []">
+<p-table *ngIf="compactViewMode" id="compactMoviesTable" [value]="movies?.content ?? []">
   <ng-template pTemplate="header">
-    <ng-container *ngTemplateOutlet="tableHeader"></ng-container>
+    <tr>
+      <th style="width: 15%;" class="center-align">ID</th>
+      <th style="width: 20%;" class="center-align">Year</th>
+      <th style="width: 40%;" class="center-align">Title</th>
+    </tr>
   </ng-template>
   <ng-template pTemplate="body" let-movie>
     <tr>
@@ -43,11 +26,27 @@
 </p-table>
 
 <!-- Full table displayed on the list view -->
-<p-table *ngIf="!showOnlyWinners" id="fullMoviesTable" [value]="movies?.content ?? []"
+<p-table *ngIf="!compactViewMode" id="fullMoviesTable" [value]="movies?.content ?? []"
   [rows]="movies?.pageable?.pageSize ?? defaultNumbersOfRows" [paginator]="true" [first]="movies?.pageable?.offset ?? 0"
   [totalRecords]="movies?.totalElements ?? 0" [lazy]="true" (onLazyLoad)="getData($event)">
   <ng-template pTemplate="header">
-    <ng-container *ngTemplateOutlet="tableHeader"></ng-container>
+    <tr>
+      <th style="width: 15%;" class="center-align">ID</th>
+      <th style="width: 20%;" class="center-align">Year</th>
+      <th style="width: 40%;" class="center-align">Title</th>
+      <th style="width: 15%;" class="center-align">Winner</th>
+    </tr>
+    <tr>
+      <th style="width: 15%;" class="center-align"></th>
+      <th style="width: 20%;" class="center-align">
+        <input style="width: 100px;" type="number" pInputText placeholder="Filter by Year" [(ngModel)]="yearFilter" min="1900"
+          max="2100" (blur)="getData()" />
+      </th>
+      <th style="width: 40%;" class="center-align"></th>
+      <th style="width: 15%;" class="center-align">
+        <p-dropdown [options]="winnerOptions" appendTo="body" [(ngModel)]="winnerFilter" (onChange)="getData()"></p-dropdown>
+      </th>
+    </tr>
   </ng-template>
   <ng-template pTemplate="body" let-movie>
     <tr>
