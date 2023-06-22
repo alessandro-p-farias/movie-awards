@@ -43,11 +43,11 @@
       <th style="width: 15%;" class="center-align"></th>
       <th style="width: 20%;" class="center-align">
         <div class="grid">
-          <div class="col">
+          <div class="col" style="padding-left: 0;">
             <input #tableYearFilter style="width: 135px;" type="number" pInputText placeholder="Filter by Year"
               [(ngModel)]="yearFilter" min="1900" max="2100" (blur)="getData()" />
           </div>
-          <div class="col">
+          <div class="col" style="padding-left: 0;">
             <p-message [style]="{width: '135px'}" *ngIf="!tableYearFilter.validity?.valid" severity="error"
               text="Invalid year"></p-message>
           </div>
