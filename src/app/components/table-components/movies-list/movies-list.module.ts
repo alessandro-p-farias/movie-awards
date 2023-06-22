@@ -7,6 +7,7 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
+import { MessageModule } from 'primeng/message';
 
 import { MoviesListComponent } from './movies-list.component';
 
@@ -24,7 +25,8 @@ import { MoviesListComponent } from './movies-list.component';
     ButtonModule,
     TableModule,
     InputTextModule,
-    DropdownModule
+    DropdownModule,
+    MessageModule
   ],
   providers: [],
 })
